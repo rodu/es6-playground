@@ -33,7 +33,7 @@ module.exports = function exports(grunt){
   // on watch events configure jshint:all to only run on changed file
   grunt.event.on('watch', function(action, filepath) {
     var files = {};
-    files['build/' + filepath.replace(/src\//, '')] = 'src/**/*.js';
+    files['build/' + filepath.replace(/src\//, '')] = filepath;
 
     grunt.config('babel.dist.files', files);
   });
