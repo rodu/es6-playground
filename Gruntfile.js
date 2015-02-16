@@ -1,4 +1,5 @@
 /* global module */
+// jshint onevar: false
 module.exports = function exports(grunt){
   'use strict';
 
@@ -21,7 +22,7 @@ module.exports = function exports(grunt){
       },
       dist: {
         files: {
-          'build/app.js': 'src/app.js'
+          'build/app.js': 'src/**/*.js'
         }
       }
     }
@@ -29,4 +30,11 @@ module.exports = function exports(grunt){
 
   grunt.registerTask('default', ['babel']);
 
+  // on watch events configure jshint:all to only run on changed file
+  grunt.event.on('watch', function(action, filepath) {
+    var files = {};
+    files['build/' + filepath.replace(/src\//, '')] = 'src/**/*.js';
+
+    grunt.config('babel.dist.files', files);
+  });
 };
