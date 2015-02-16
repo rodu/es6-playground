@@ -9,7 +9,7 @@ module.exports = function exports(grunt){
     watch: {
       scripts: {
         files: ['./src/**/*.js'],
-        tasks: ['babel'],
+        tasks: ['babel', 'shell'],
         options: {
           spawn: false
         }
@@ -25,6 +25,15 @@ module.exports = function exports(grunt){
           'build/app.js': 'src/**/*.js'
         }
       }
+    },
+
+    shell: {
+      options: {
+        stderr: false
+      },
+      target: {
+        command: 'ls'
+      }
     }
   });
 
@@ -32,9 +41,13 @@ module.exports = function exports(grunt){
 
   // on watch events configure jshint:all to only run on changed file
   grunt.event.on('watch', function(action, filepath) {
-    var files = {};
-    files['build/' + filepath.replace(/src\//, '')] = filepath;
+    var files = {},
+      fileBuildPath = filepath.replace(/^src\//, 'build/'),
+      shellTarget = 'node ' + fileBuildPath + ' > build/output.txt';
+
+    files[fileBuildPath] = filepath;
 
     grunt.config('babel.dist.files', files);
+    grunt.config('shell.target.command', shellTarget);
   });
 };
