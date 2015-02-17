@@ -10,7 +10,7 @@ class Person{
     setName (name) {
         this.name = name;
     }
-};
+}
 
 var person = new Person('Roberto');
 
