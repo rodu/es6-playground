@@ -10,4 +10,4 @@ var o = {
     }
 };
 
-console.log(o.toString().includes('he'));
+console.log(o.toString().normalize());
