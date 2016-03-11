@@ -1,15 +1,22 @@
 /* global module */
 // jshint onevar: false
+
+var logfile = require('logfile-grunt');
+
 module.exports = function exports(grunt){
   'use strict';
 
   require('load-grunt-tasks')(grunt); // npm install --save-dev load-grunt-tasks
 
   grunt.initConfig({
+    config: {
+      outputFile: 'build/output.txt'
+    },
+
     watch: {
       scripts: {
         files: ['./src/**/*.js'],
-        tasks: ['babel', 'shell'],
+        tasks: ['devlog', 'babel', 'shell'],
         options: {
           spawn: false
         }
@@ -39,11 +46,25 @@ module.exports = function exports(grunt){
 
   grunt.registerTask('default', ['babel']);
 
+  grunt.task.registerTask(
+    'devlog',
+    'Dump errors to a log file.',
+    function() {
+      logfile(grunt, {
+        filePath: grunt.config('config.outputFile'),
+        clearLogFile: true
+      });
+    }
+  );
+
   // on watch events configure jshint:all to only run on changed file
   grunt.event.on('watch', function(action, filepath) {
     var files = {},
       fileBuildPath = filepath.replace(/^src\//, 'build/'),
-      shellTarget = 'node ' + fileBuildPath + ' > build/output.txt';
+      shellTarget = 'node ' +
+        fileBuildPath +
+        ' > ' +
+        grunt.config('config.outputFile');
 
     files[fileBuildPath] = filepath;
 
