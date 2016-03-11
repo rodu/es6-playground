@@ -14,10 +14,12 @@ module.exports = function exports(grunt){
       errorsFile: 'build/errors.txt'
     },
 
+    clean: ['<%= config.errorsFile %>'],
+
     watch: {
       scripts: {
         files: ['./src/**/*.js'],
-        tasks: ['devlog', 'babel', 'shell'],
+        tasks: ['clean', 'devlog', 'babel', 'shell'],
         options: {
           spawn: false
         }
