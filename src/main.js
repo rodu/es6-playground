@@ -1,9 +1,14 @@
 function temporalDeadZone(){
-  console.log(typeof myName);
-  {
-    let myName = 'Rob';
-    console.log('myName in the block:', myName);
-  }
+  console.log(myName); // This should throw a reference error but Babel is not!
+  let myName = 'Rob';
 }
 
-temporalDeadZone();
+function temporalDeadZoneBlock(argument) {
+  {
+    let myName = 'Rob';
+  }
+
+  console.log(myName);
+}
+
+temporalDeadZoneBlock();
