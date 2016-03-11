@@ -10,7 +10,8 @@ module.exports = function exports(grunt){
 
   grunt.initConfig({
     config: {
-      outputFile: 'build/output.txt'
+      outputFile: 'build/output.txt',
+      errorsFile: 'build/errors.txt'
     },
 
     watch: {
@@ -51,7 +52,7 @@ module.exports = function exports(grunt){
     'Dump errors to a log file.',
     function() {
       logfile(grunt, {
-        filePath: grunt.config('config.outputFile'),
+        filePath: grunt.config('config.errorsFile'),
         clearLogFile: true
       });
     }
