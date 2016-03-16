@@ -17,6 +17,14 @@
     "grunt-shell": "^1.1.1",
     "load-grunt-tasks": "^3.1.0",
     "logfile-grunt": "~0.2.0",
-    "grunt-contrib-clean": "~1.0.0"
+    "grunt-contrib-clean": "~1.0.0",
+    "eslint-config-airbnb": "~6.1.0",
+    "eslint-plugin-react": "~4.2.3",
+    "eslint": "~2.4.0",
+    "babel-eslint": "~5.0.0",
+    "eslint-config-google": "~0.4.0"
+  },
+  "eslintConfig": {
+    "extends": "airbnb"
   }
 }

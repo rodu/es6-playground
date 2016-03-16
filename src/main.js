@@ -1,6 +1,6 @@
 function temporalDeadZone(){
-  console.log(myName); // This should throw a reference error but Babel is not!
   let myName = 'Rob';
+  console.log(myName); // This should throw a reference error but Babel is not!
 }
 
 function temporalDeadZoneBlock(argument) {

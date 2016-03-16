@@ -1,10 +1,9 @@
 /* global module */
 // jshint onevar: false
-
-var logfile = require('logfile-grunt');
-
 module.exports = function exports(grunt){
   'use strict';
+
+  var logfile = require('logfile-grunt');
 
   require('load-grunt-tasks')(grunt); // npm install --save-dev load-grunt-tasks
 
